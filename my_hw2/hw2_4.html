@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw2_4</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        // Присвоить переменной а значение в промежутке[0..15].
+        // С помощью оператора switch организовать вывод чисел от a до 15.
+        let arr = [];
+
+        for (let i = 0; i < 16; i++) {
+            arr.push(i);
+        }
+
+        let a = String(Math.floor(Math.random() * arr.length));
+        console.log(a);
+
+
+        switch (a) {
+            case '0':
+                for (let a = 0; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+            case '1':
+                for (let a = 1; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+            case '2':
+                for (let a = 2; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+            case '3':
+                for (let a = 3; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+            case '4':
+                for (let a = 4; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+            case '5':
+                for (let a = 5; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+            case '6':
+                for (let a = 6; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+            case '7':
+                for (let a = 7; a < arr.length; a++) {
+                    console.log(a)
+                }
+                break;
+
+
+            default:
+                console.log('толи лыжи не едут...')
+                break;
+        }
+
+
+    </script>
+
+</body>
+
+</html>
