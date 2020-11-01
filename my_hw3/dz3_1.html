@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dz3_1</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        // 1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
+
+        // на этом примере моя дислексия обострилась ...
+        let numberBefore = 1;
+        let arrResult = [];
+
+        while (numberBefore <= 100) {
+            if (numberBefore == 1) {
+                arrResult.push(1)
+            } else {
+                let resultNumber = 2;
+                let checkNumber = 2;
+                while (numberBefore % checkNumber !== 0) {
+                    checkNumber += 1;
+                    resultNumber += 1;
+                }
+                if (resultNumber == numberBefore) {
+                    arrResult.push(resultNumber);
+                }
+            }
+            numberBefore += 1;
+        }
+
+        alert(arrResult);
+
+
+
+
+    </script>
+
+</body>
+
+</html>
