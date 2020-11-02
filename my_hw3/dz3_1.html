@@ -13,27 +13,50 @@
         // 1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
 
         // на этом примере моя дислексия обострилась ...
-        let numberBefore = 1;
-        let arrResult = [];
+        function getSimpleNumbers(params) {
+            let numberBefore = 1;
+            let arrResult = [];
 
-        while (numberBefore <= 100) {
-            if (numberBefore == 1) {
-                arrResult.push(1)
-            } else {
-                let resultNumber = 2;
-                let checkNumber = 2;
-                while (numberBefore % checkNumber !== 0) {
-                    checkNumber += 1;
-                    resultNumber += 1;
+            while (numberBefore <= 100) {
+                if (numberBefore == 1) {
+                    arrResult.push(1)
+                } else {
+                    let resultNumber = 2;
+                    let checkNumber = 2;
+                    while (numberBefore % checkNumber !== 0) {
+                        checkNumber += 1;
+                        resultNumber += 1;
+                    }
+                    if (resultNumber == numberBefore) {
+                        arrResult.push(resultNumber);
+                    }
                 }
-                if (resultNumber == numberBefore) {
-                    arrResult.push(resultNumber);
+                numberBefore += 1;
+            }
+
+            return arrResult;
+
+
+        }
+        let arrSorted = getSimpleNumbers();
+        let arrTemp = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+
+
+        function testSimArr(arr1, arrSorted) {
+            alert(`тестируем getSimpleNumbers НА СОВПАДЕНИЕ`);
+            for (let i = 0; i < arrSorted.length; i++) {
+                if (arr1[i] !== arrSorted[i]) {
+                    return alert('false');
                 }
             }
-            numberBefore += 1;
+            return alert('TRUE');
         }
 
-        alert(arrResult);
+
+        testSimArr(arrTemp, arrSorted);
+
+
+
 
 
 
