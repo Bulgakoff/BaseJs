@@ -15,30 +15,32 @@
         // на этом примере моя дислексия обострилась ...
         function getSimpleNumbers(params) {
             let numberBefore = 1;
-            let arrResult = [];
+            let arrSimpleNum = [];
 
             while (numberBefore <= 100) {
                 if (numberBefore == 1) {
-                    arrResult.push(1)
+                    arrSimpleNum.push(1)
                 } else {
-                    let resultNumber = 2;
+                    let simpleNumber = 2;
                     let checkNumber = 2;
                     while (numberBefore % checkNumber !== 0) {
                         checkNumber += 1;
-                        resultNumber += 1;
+                        simpleNumber += 1;
                     }
-                    if (resultNumber == numberBefore) {
-                        arrResult.push(resultNumber);
+                    if (simpleNumber == numberBefore) {
+                        arrSimpleNum.push(simpleNumber);
                     }
                 }
                 numberBefore += 1;
             }
 
-            return arrResult;
+            return arrSimpleNum;
 
 
         }
         let arrSorted = getSimpleNumbers();
+        alert(getSimpleNumbers());
+
         let arrTemp = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
 
 
@@ -50,6 +52,7 @@
                 }
             }
             return alert('TRUE');
+
         }
 
 
