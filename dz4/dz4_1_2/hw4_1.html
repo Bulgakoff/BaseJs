@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+
+        // 1.	Написать функцию, преобразующую число в объект.
+        // Передавая на вход число от 0 до 999, надо получить на выходе объект,
+        //  в котором в соответствующих свойствах описаны единицы, десятки и сотни.
+        //  Например, для числа 245 надо получить 
+        //  следующий объект: { ‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2 }.Если число превышает 999,
+        //  необходимо выдать соответствующее сообщение
+        //   с помощью console.log и вернуть пустой объект.
+        function getNumberObj(params) {
+            if (params > 999) {
+                console.log(`число ${params} больше 999 попробуйте снова `);
+                return {};
+            }
+            return {
+                'единицы': params % 10,
+                'десятки': parseInt(params / 10) % 10,
+                'сотни': parseInt(params / 100)
+            };
+        }
+
+        let number = +prompt('enter number : ');
+
+        console.log(getNumberObj(number));
+
+    </script>
+
+</body>
+
+</html>
