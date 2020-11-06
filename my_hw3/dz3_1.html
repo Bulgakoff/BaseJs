@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dz3_1</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        // 1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
+
+        // на этом примере моя дислексия обострилась ...
+        function getSimpleNumbers(params) {
+            let numberBefore = 1;
+            let arrSimpleNum = [];
+
+            while (numberBefore <= 100) {
+                if (numberBefore == 1) {
+                    arrSimpleNum.push(1)
+                } else {
+                    let simpleNumber = 2;
+                    let checkNumber = 2;
+                    while (numberBefore % checkNumber !== 0) {
+                        checkNumber += 1;
+                        simpleNumber += 1;
+                    }
+                    if (simpleNumber == numberBefore) {
+                        arrSimpleNum.push(simpleNumber);
+                    }
+                }
+                numberBefore += 1;
+            }
+
+            return arrSimpleNum;
+
+
+        }
+        let arrSorted = getSimpleNumbers();
+        alert(getSimpleNumbers());
+
+        let arrTemp = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+
+
+        function testSimArr(arr1, arrSorted) {
+            alert(`тестируем getSimpleNumbers НА СОВПАДЕНИЕ`);
+            for (let i = 0; i < arrSorted.length; i++) {
+                if (arr1[i] !== arrSorted[i]) {
+                    return alert('false');
+                }
+            }
+            return alert('TRUE');
+
+        }
+
+
+        testSimArr(arrTemp, arrSorted);
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
