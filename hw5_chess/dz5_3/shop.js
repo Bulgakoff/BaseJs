@@ -63,7 +63,7 @@ const productsObj = {
 
                 basketCost += product.price;
             });
-            alert(`В корзине: ${this.productsArr.length} товаров на сумму ${basketCost} рублей`);
+            alert(`В корзине: ${this.productsArr.length} товара на сумму ${basketCost} рублей`);
         }
 
     },
