@@ -42,6 +42,7 @@ const productsObj = {
         if (this.productsArr.length === 0) {
             alert('Корзина пуста');
         } else {
+            this.prods.textContent = 'КОРЗИНА ТОВАРОВ : ';
             let ind = 0;
             this.productsArr.forEach(product => {
                 let productUnit = document.createElement('div');
