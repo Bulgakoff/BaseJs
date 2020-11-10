@@ -56,8 +56,8 @@ const productsObj = {
 
 
                 nameProduct.textContent = this.productsArr[ind].name
-                idProduct.textContent = this.productsArr[ind].id
-                priceProduct.textContent = this.productsArr[ind].price
+                idProduct.textContent = `ID № ${this.productsArr[ind].id}`
+                priceProduct.textContent = `${this.productsArr[ind].price} рублей `
                 ind += 1
 
                 basketCost += product.price;
