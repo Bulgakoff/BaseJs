@@ -7,12 +7,12 @@
 // 3.2.Наполненная должна выводить «В корзине: n товаров на сумму m рублей».
 
 /* 
-Разметка товара:
+Разметка карточки товара:
 
-<div class="products">
-<div class = "nameProduct"> $ {здесь_название_товара} </div>
-<div class = "idProduct"> $ {здесь_ id} </div>
-<div class = "priceProduct"> $ {здесь_цена}</div>
+<div class="card">
+             <div class = "nameProduct"> $ {здесь_название_товара} </div>
+             <div class = "idProduct"> $ {здесь_ id} </div>
+             <div class = "priceProduct"> $ {здесь_цена}</div>
 </div>
 */
 
@@ -45,7 +45,8 @@ const productsObj = {
             let ind = 0;
             this.productsArr.forEach(product => {
                 let productUnit = document.createElement('div');
-                this.prods.appendChild(productUnit).app;
+                productUnit.className = 'card';
+                this.prods.appendChild(productUnit);
                 let nameProduct = document.createElement('div');
                 let idProduct = document.createElement('div');
                 let priceProduct = document.createElement('div');

@@ -1,5 +1,9 @@
 .products {
-    font-size: 50px;
     display: flex;
     justify-content: space-around;
+}
+.card{
+    border: 4px solid #000;
+    font-size: 50px;
+    background-color: rgb(137, 166, 172);
 }
