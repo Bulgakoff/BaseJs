@@ -1,0 +1,55 @@
+.container_main {
+    width: 560px;
+    height: 560px;
+    margin-top: 30px;
+    outline: 1px solid black;
+}
+
+.container_nnn {
+    margin-top: 30px;
+    background-color: darkslategray;
+}
+
+.all {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.cell {
+    width: 70px;
+    height: 70px;
+    float: left;
+}
+
+.chars {
+    outline: 1px solid #000;
+    background: #fff;
+    color: green;
+    font-size: 50px;
+    text-align: center;
+}
+
+.numbers {
+    outline: 1px solid #000;
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    color: green;
+    font-size: 50px;
+    text-align: center;
+}
+
+.black {
+    background: black;
+    color: green;
+    font-size: 50px;
+    text-align: center;
+}
+
+.white {
+    background: #fff;
+    color: green;
+    font-size: 50px;
+    text-align: center;
+}
