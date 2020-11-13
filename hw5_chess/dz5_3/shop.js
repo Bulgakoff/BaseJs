@@ -21,22 +21,21 @@ const productsObj = {
 
 
 
-    productsArr: [
-        // {
-        //     name: 'Ноут',
-        //     id: 1,
-        //     price: 20000,
-        // },
+    productsArr: [{
+            name: 'Ноут',
+            id: 1,
+            price: 20000,
+        },
         {
             name: 'клавиатура',
             id: 2,
             price: 500,
         },
-        // {
-        //     name: 'мышка',
-        //     id: 3,
-        //     price: 230,
-        // },
+        {
+            name: 'мышка',
+            id: 3,
+            price: 230,
+        },
     ],
     countBasketPrice() {
         let basketCost = 0;
