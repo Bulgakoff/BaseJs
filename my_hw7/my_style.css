@@ -16,6 +16,7 @@
     background: #009641;
 }
 #game{
+    /* position: relative; */
     border-collapse: collapse;
     margin: 2% auto 0;
 }
@@ -43,4 +44,14 @@ td.cell{
 }
 .disabled:hover{
     background: #7c7c7c;
+}
+.count{
+    margin: 0px auto;
+    width: 150px;
+    height: 50px;
+    /* position: absolute; */
+    opacity: 0.5;
+    background-color: antiquewhite;
+    font-size: 50px;
+    text-align: center;
 }
