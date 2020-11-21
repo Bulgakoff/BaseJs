@@ -299,13 +299,13 @@ const game = {
         this.statusP.setFinished();
         clearInterval(this.tickInterval);
         this.setPlayButtonState('Игра окончена', true); //добавляется класс disabled
-        this.food.setCountFood(this.zeroCount());
 
         console.log(this.food.getCountF().c);
     },
 
     tickHandler() {
         if (!this.canMakeStep()) { // если можно сделать шаг
+            this.food.setCountFood(this.zeroCount());
             return this.finish(); //заканчиваем игру
         }
 
