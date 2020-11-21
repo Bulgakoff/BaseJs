@@ -94,7 +94,7 @@ const map = {
         }
     },
 
-    render(snakePointsArray, foodPoint) { //присваиваем классы для расскравски 
+    render(snakePointsArray, foodPoint, wallPOint) { //присваиваем классы для расскравски 
         for (const cell of this.usedCells) {
             cell.className = 'cell';
         }
@@ -107,11 +107,34 @@ const map = {
             snakeCell.classList.add(index === 0 ? 'snakeHead' : 'snakeBody');
             this.usedCells.push(snakeCell);
         });
-
+        // еда 
         const foodCell = this.cells[`x${foodPoint.x}_y${foodPoint.y}`];
         foodCell.classList.add('food');
         this.usedCells.push(foodCell);
+        //препятствие
+        const wallCell = this.cells[`x${wallPOint.x}_y${wallPOint.y}`];
+        wallCell.classList.add('wall');
+        this.usedCells.push(wallCell);
     },
+};
+const walls = {
+    x: null,
+    y: null,
+
+    getCoordinatesWall() { //2
+        return {
+            x: this.x,
+            y: this.y,
+        };
+    },
+    setCoordinatesWall(point) { //1
+        this.x = point.x;
+        this.y = point.y;
+    },
+    isOnPointWall(point) {
+        return this.x === point.x && this.y === point.y;
+    },
+
 };
 
 const snake = {
@@ -192,6 +215,7 @@ const food = {
     x: null,
     y: null,
     c: 0,
+
     getCountF() {
         return {
             c: this.c
@@ -249,6 +273,7 @@ const game = {
     food,
     statusP,
     tickInterval: null,
+    walls,
 
     init(userSettings) {
         // передаем {speed: 2}
@@ -260,7 +285,6 @@ const game = {
             for (const err of validation.errors) {
                 console.log(err);
             }
-
             return;
         }
         // рисуем поле :
@@ -274,13 +298,15 @@ const game = {
         this.stop();
         this.snake.init(this.getStartSnakeBody(), 'up'); // стартуем змейку
         //(но вначале // вернем массив с начальной 1 точкой змеи )
-        this.food.setCoordinates(this.getRandomFreeCoordinates()); //ставим рандомно еду
+        this.food.setCoordinates(this.getRandomFreeCoordinates()); //ставим рандомно еду1111111111111111111111111111111111111111111
+        this.walls.setCoordinatesWall(this.getRandomCoordWall());
         this.render(); //присваиваем классы для расскравски змеи ее тела и еды
+        this.zeroDivCount(); //
     },
 
     render() {
         //присваиваем классы для расскравски:
-        this.map.render(this.snake.getBody(), this.food.getCoordinates());
+        this.map.render(this.snake.getBody(), this.food.getCoordinates(), this.walls.getCoordinatesWall());
     },
 
     play() {
@@ -299,13 +325,13 @@ const game = {
         this.statusP.setFinished();
         clearInterval(this.tickInterval);
         this.setPlayButtonState('Игра окончена', true); //добавляется класс disabled
+        this.food.setCountFood(this.zeroCount());
 
         console.log(this.food.getCountF().c);
     },
 
     tickHandler() {
         if (!this.canMakeStep()) { // если можно сделать шаг
-            this.food.setCountFood(this.zeroCount());
             return this.finish(); //заканчиваем игру
         }
 
@@ -313,22 +339,49 @@ const game = {
             //кто нибудь еду ил не  (но в начале- getNextStepHeadPoint-->получить где находится голова)
             this.snake.growUp(); // добвим в конец змейки точку в массив
             this.food.setCountFood(this.countFood()); //СЧЕТЧИК
-            this.showCount();
+            // this.showCount();
+            this.checkCount(this.showCount());
             console.log(this.food.getCountF().c);
 
             this.food.setCoordinates(this.getRandomFreeCoordinates()); //ставим рандомно следующую еду
-
+            this.walls.setCoordinatesWall(this.getRandomCoordWall());
             if (this.isGameWon()) { //тело змейки > колва еды то выход с победой
                 this.finish();
             }
         }
+        if (this.walls.isOnPointWall(this.snake.getNextStepHeadPoint())) {
+            this.stop();
 
+        }
         this.snake.makeStep(); //если не на еде то змея в движении
         this.render(); //присваиваем классы для расскравски:
+
     },
-    zeroCount() {
+    getRandomCoordWall() {
+        const exclude = [this.walls.getCoordinatesWall(), this.food.getCoordinates(), ...this.snake.getBody()]; //все занятые ячейки
+        // getCoordinatesWall - препятствия  //getBody - возвращает все точки тела змейки, 
+
+        while (true) {
+            const rndPointWall = { //рандомная точка очередного препятствия
+                x: Math.floor(Math.random() * this.config.getColsCount()),
+                y: Math.floor(Math.random() * this.config.getRowsCount()),
+            };
+
+            if (!exclude.some(exPoint => rndPointWall.x === exPoint.x && rndPointWall.y === exPoint.y)) {
+                return rndPointWall; //если нет совпадений то вернем новую точку препятствия 
+            }
+        }
+    },
+    checkCount(score) {
+        if (score === this.config.getWinFoodCount()) {
+            alert(`набрано ${this.config.getWinFoodCount()} баллов - вы победили`);
+        }
+    },
+    zeroDivCount() {
         const displayCount = document.querySelector('.count');
         displayCount.textContent = 0;
+    },
+    zeroCount() {
         const summ_zero = {
             c: this.food.getCountF().c * 0,
         };
@@ -338,6 +391,7 @@ const game = {
     showCount() {
         const displayCount = document.querySelector('.count');
         displayCount.textContent = this.food.getCountF().c;
+        return this.food.getCountF().c;
     },
     countFood() {
         const summ_food = {
@@ -377,13 +431,13 @@ const game = {
         const exclude = [this.food.getCoordinates(), ...this.snake.getBody()]; //все занятые ячейки
         //getBody - возвращает все точки тела змейки
         while (true) {
-            const rndPoint = { //рандомная точка очередной еды
+            const rndPointWall = { //рандомная точка очередной еды
                 x: Math.floor(Math.random() * this.config.getColsCount()),
                 y: Math.floor(Math.random() * this.config.getRowsCount()),
             };
 
-            if (!exclude.some(exPoint => rndPoint.x === exPoint.x && rndPoint.y === exPoint.y)) {
-                return rndPoint; //усли нет совпадений то вернем свежую точку еды 
+            if (!exclude.some(exPoint => rndPointWall.x === exPoint.x && rndPointWall.y === exPoint.y)) {
+                return rndPointWall; //усли нет совпадений то вернем свежую точку еды 
             }
         }
     },
